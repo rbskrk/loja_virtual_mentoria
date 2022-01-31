@@ -13,24 +13,24 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "categoria_produto")
-@SequenceGenerator(name ="seq_categoria_produto", sequenceName = "seq_categoria_produto",  allocationSize = 1, initialValue = 1)
+@SequenceGenerator(name = "seq_categoria_produto", sequenceName = "seq_categoria_produto", allocationSize = 1, initialValue = 1)
 public class CategoriaProduto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_categoria_produto")
-	private Long id;
+	private Long Id;
 	
-	@Column(name = "nome-desc", nullable = false)
+	@Column(name = "nome_descricao", nullable = false)
 	private String nomeDesc;
 
 	public Long getId() {
-		return id;
+		return Id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		Id = id;
 	}
 
 	public String getNomeDesc() {
@@ -43,7 +43,7 @@ public class CategoriaProduto implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(Id);
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class CategoriaProduto implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		CategoriaProduto other = (CategoriaProduto) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(Id, other.Id);
 	}
 	
 }
