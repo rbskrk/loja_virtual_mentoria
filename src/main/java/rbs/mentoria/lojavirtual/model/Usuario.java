@@ -1,7 +1,7 @@
 package rbs.mentoria.lojavirtual.model;
 
-import java.sql.Date;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.ConstraintMode;
@@ -38,7 +38,7 @@ public class Usuario implements UserDetails {
 
 	private String senha;
 
-	//@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	private Date dataAtualSenha;
 
 	@OneToMany(fetch = FetchType.LAZY)

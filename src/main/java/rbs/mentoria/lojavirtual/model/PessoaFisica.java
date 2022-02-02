@@ -1,7 +1,6 @@
 package rbs.mentoria.lojavirtual.model;
 
 import java.util.Date;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
