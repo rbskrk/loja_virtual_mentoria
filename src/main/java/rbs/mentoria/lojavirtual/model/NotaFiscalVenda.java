@@ -4,35 +4,43 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "nota_fiscal_venda")
 @SequenceGenerator(name = "seq_nota_fiscal_venda", sequenceName = "seq_nota_fiscal_venda", allocationSize = 1, initialValue = 1)
-public class NotaFiscalVenda implements Serializable{
+public class NotaFiscalVenda implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_nota_fiscal_venda")
 	private Long id;
-	
+
 	private String numero;
-	
+
 	private String serie;
-	
+
 	private String tipo;
-	
+
 	@Column(columnDefinition = "text")
 	private String xml;
-	
+
 	@Column(columnDefinition = "text")
 	private String pdf;
+
+	@OneToOne
+	@JoinColumn(name = "venda_compra_loja_virtual_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "venda_compra_loja_virtual_fk"))
+	private VendaCompraLojaVirtual vendaCompraLojaVirtual;
 
 	public Long getId() {
 		return id;
@@ -82,6 +90,14 @@ public class NotaFiscalVenda implements Serializable{
 		this.pdf = pdf;
 	}
 
+	public VendaCompraLojaVirtual getVendaCompraLojaVirtual() {
+		return vendaCompraLojaVirtual;
+	}
+
+	public void setVendaCompraLojaVirtual(VendaCompraLojaVirtual vendaCompraLojaVirtual) {
+		this.vendaCompraLojaVirtual = vendaCompraLojaVirtual;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -98,7 +114,5 @@ public class NotaFiscalVenda implements Serializable{
 		NotaFiscalVenda other = (NotaFiscalVenda) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 
 }
